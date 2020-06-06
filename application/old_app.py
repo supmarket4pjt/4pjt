@@ -22,7 +22,7 @@ login_manager.login_view = 'login'
 
 class User(UserMixin, db.Document):
     meta = {'collection': 'utilisateur'}
-    email = db.StringField()
+    email = db.StringField(max_length=30)
     password = db.StringField()
 
 
@@ -38,7 +38,7 @@ class RegForm(FlaskForm):
                              InputRequired(), Length(min=8, max=20)])
 
 
-@app.route('/index', methods=['GET'])
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
@@ -52,16 +52,16 @@ def register():
             if existing_user is None:
                 hashpass = generate_password_hash(
                     form.password.data, method='sha256')
-                hey = User(email=form.email.data, password=hashpass).save()
+                hey = User(form.email.data, hashpass).save()
                 login_user(hey)
-                return redirect(url_for('index'))
+                return redirect(url_for('/'))
     return render_template('register.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated == True:
-        return redirect(url_for('index'))
+        return redirect(url_for('dashboard'))
     form = RegForm()
     if request.method == 'POST':
         if form.validate():
@@ -69,7 +69,7 @@ def login():
             if check_user:
                 if check_password_hash(check_user['password'], form.password.data):
                     login_user(check_user)
-                    return redirect(url_for('index'))
+                    return redirect(url_for('dashboard'))
     return render_template('login.html', form=form)
 
 

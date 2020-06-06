@@ -1,18 +1,11 @@
 import config
 from flask_mongoengine import MongoEngine
 from flask_login.login_manager import LoginManager
-from application import app
-
-
-db = MongoEngine(app)
-app.config['SECRET_KEY'] = '<---YOUR_SECRET_FORM_KEY--->'
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
+from application import db
 
 
 class User():
-    meta = {'collection': '<---YOUR_COLLECTION_NAME--->'}
+    meta = {'collection': 'utilisateur'}
     email = db.StringField(max_length=30)
     password = db.StringField()
 

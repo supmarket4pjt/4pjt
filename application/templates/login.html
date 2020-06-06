@@ -1,12 +1,21 @@
 {% extends "layout.html" %} {% block body %}
 <h1>Login</h1>
 <form action="/login" method="post">
-  <p>Email</p>
-  {{ form.email }}
-  <p>Password</p>
-  {{ form.password }} {{ form.hidden_tag() }}
-  <br />
-  <br />
-  <input type="submit" value="Login" />
+  <fieldset>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      {{ form.email }}
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      {{ form.password }} {{ form.hidden_tag() }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
 </form>
+
 {% endblock %}
