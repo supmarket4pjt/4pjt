@@ -1,10 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired, Email, InputRequired, Length
-from wtforms.fields.simple import PasswordField
+from wtforms import StringField, PasswordField
 from wtforms.validators import Email, Length, InputRequired
 
 
 class RegForm(FlaskForm):
-    email = StringField('email')
-    password = PasswordField('password')
+    name = StringField('name')
+    email = StringField('email',  validators=[InputRequired(), Email(
+        message='Invalid email'), Length(max=30)])
+    password = PasswordField('password', validators=[
+                             InputRequired(), Length(min=8, max=20)])
+    verify = PasswordField('verify')
+    address = StringField('address')
+    number = StringField('number')

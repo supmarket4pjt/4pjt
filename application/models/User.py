@@ -1,15 +1,3 @@
-import config
-from flask_mongoengine import MongoEngine
-from flask_login.login_manager import LoginManager
-from application import db
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_mongoengine import MongoEngine, Document
 
-
-class User():
-    meta = {'collection': 'utilisateur'}
-    email = db.StringField(max_length=30)
-    password = db.StringField()
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.objects(pk=user_id).first()

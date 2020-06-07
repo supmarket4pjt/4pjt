@@ -1,0 +1,62 @@
+{% extends "layout.html" %} {% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#"><strong>S</strong>upmarket</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#"
+    aria-controls=""
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"
+          >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" />
+      <button class="btn btn-primary my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
+<div>
+  <h1>Hello, {{admin}} !</h1>
+  <table class="table table-hover">
+    <thead>
+        <th scope="row"olspan="2">name</th>
+        <th scope="row">email</th>
+        <th scope="row">address</th>
+        <th scope="row">cell phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for user in users%}
+        <td><a href="/admin/{{user.name}}">{{user.name}}</a></td>
+        <td><a href="/admin/{{user.name}}">{{user.email}}</a></td>
+        <td><a href="/admin/{{user.name}}">{{user.address}}</a></td>
+        <td><a href="/admin/{{user.name}}">{{user.number}}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

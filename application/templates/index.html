@@ -1,46 +1,7 @@
 {% extends "layout.html" %} {% block body %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Supmarket</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#"
-    aria-controls=""
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Home <span class="sr-only">(current)</span></a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" />
-      <button class="btn btn-primary my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form>
-  </div>
-</nav>
 <div class="jumbotron">
-  <h1 class="display-3">Hello, world!{{online_users}}</h1>
+  <h1 class="display-3">Hello, {{user}} !</h1>
   <p class="lead">
     This is a simple hero unit, a simple jumbotron-style component for calling
     extra attention to featured content or information.
@@ -54,4 +15,15 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
 </div>
+<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Exemple Promo</div>
+  <div class="card-body">
+    <h4 class="card-title">Promo sur les pates</h4>
+    <p class="card-text">
+      avec le code 'patespourtous' vous benificiez de 0% de reduction sur toutes
+      la categories pates.
+    </p>
+  </div>
+</div>
+
 {% endblock %}
