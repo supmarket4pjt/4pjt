@@ -2,28 +2,39 @@
 
 <div class="jumbotron">
   <h1 class="display-3">Hello, {{user}} !</h1>
-  <p class="lead">
-    This is a simple hero unit, a simple jumbotron-style component for calling
-    extra attention to featured content or information.
-  </p>
-  <hr class="my-4" />
-  <p>
-    It uses utility classes for typography and spacing to space content out
-    within the larger container.
-  </p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
-</div>
-<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-  <div class="card-header">Exemple Promo</div>
-  <div class="card-body">
-    <h4 class="card-title">Promo sur les pates</h4>
-    <p class="card-text">
-      avec le code 'patespourtous' vous benificiez de 0% de reduction sur toutes
-      la categories pates.
-    </p>
+  {%for article in articles%} 
+  <div class="card" style="width: 20rem; display: inline-block;">
+    {% if article.category == 'Fruits' %}
+    <div class="card-header text-white bg-warning">
+      {% else %}
+      <div class="card-header text-white bg-success">
+        {% endif %}
+          <h4 class="card-title text-black-50">{{article.title}}</h4>
+      </div>
+      <div class="card-body">
+        <p>{{article.category}}</p>
+        <p class="card-text">{{article.price}}€/{{article.description}}</p>
+        <img src="/static/images/{{article.title}}.jpg" alt="{{article.title}}" width="40%" height="40%">
+      </div>
+    </div>
+    {% endfor %}
   </div>
 </div>
+</div>
 
-{% endblock %}
+
+
+
+  <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Exemple Promo</div>
+    <div class="card-body">
+      <h4 class="card-title">Promo sur les pates</h4>
+      <p class="card-text">
+        avec le code 'patespourtous' vous benificiez de 0% de reduction sur
+        toutes la categories pates.
+      </p>
+    </div>
+  </div>
+
+  {% endblock %}
+</div>

@@ -71,9 +71,18 @@
       <a style="float: left;" class="navbar-brand" href="/index"
         ><strong>S</strong>upmarket</a
       >
+      {%if current_user.is_authenticated == True %}
       <form action="/logout" method="GET">
         <button class="btn btn-outline-danger">logout</button>
       </form>
+      {%else%}
+      <form action="/login" method="GET">
+        <button class="btn btn-outline-info">login</button>
+      </form>
+      <form action="/register" method="GET">
+        <button class="btn btn-outline-info">register</button>
+      </form>
+      {%endif%}
 
       <!-- Collapsible content -->
     </nav>

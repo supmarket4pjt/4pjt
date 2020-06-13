@@ -70,7 +70,8 @@ def login():
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', user=current_user.name)
+    item = myart.find()
+    return render_template('index.html', user=current_user.name, articles=item)
 
 
 @app.route('/admin', methods=['GET'])
@@ -81,6 +82,7 @@ def adminboard():
 
 
 @app.route('/admin/<user>', methods=['POST', 'GET'])
+@login_required
 def usermodify(user):
     form = ModForm()
     # do your code here
@@ -107,6 +109,33 @@ def usermodify(user):
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
+
+
+@app.route('/articles', methods=['GET'])
+@login_required
+def articleboard():
+    item = myart.find()
+    return render_template('articleboard.html', admin=current_user.name, articles=item)
+
+
+@app.route('/articles/<title>', methods=['POST', 'GET'])
+@login_required
+def articlemodify(title):
+
+    # do your code here
+    if request.method == 'POST':
+        myquery = {"title": title}
+        newvalues = {"$set": {"title": request.form.get('title'),
+                              "category": request.form.get('category'),
+                              "price": request.form.get('price'),
+                              "state": request.form.get('state')}}
+
+        result = myart.update_one(myquery, newvalues)
+        print("Data updated with id", result)
+        return redirect(url_for('articleboard'))
+
+    item = myart.find_one({'title': title})
+    return render_template('detailart.html', data=item)
 
 
 @app.route('/dashboard')
